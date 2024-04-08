@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mg/authentication/bloc/authentication_bloc.dart';
+import 'package:mg/screens/forgot_password_screen/forgot_password_bloc.dart';
+import 'package:mg/screens/forgot_password_screen/forgot_password_event.dart';
+import 'package:mg/screens/forgot_password_screen/forgot_password_screen.dart';
+import 'package:mg/screens/intro_page/intro_page_bloc.dart';
+import 'package:mg/screens/intro_page/intro_page_event.dart';
+import 'package:mg/screens/intro_page/intro_page_screen.dart';
 import 'package:mg/screens/login_page/login_bloc.dart';
 import 'package:mg/screens/login_page/login_event.dart';
 import 'package:mg/screens/login_page/login_screen.dart';
@@ -11,11 +17,6 @@ import 'package:mg/screens/profile_settings/profile_screen.dart';
 import 'package:mg/screens/signup_screen/signup_bloc.dart';
 import 'package:mg/screens/signup_screen/signup_event.dart';
 import 'package:mg/screens/signup_screen/signup_screen.dart';
-import 'package:mg/utils/preference_helpher.dart';
-import 'package:mg/screens/intro_page/intro_page_bloc.dart';
-import 'package:mg/screens/intro_page/intro_page_event.dart';
-import 'package:mg/screens/intro_page/intro_page_screen.dart';
-import 'package:mg/screens/forgot_password_screen/forgot_password_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = 'splash_screen';
@@ -24,7 +25,7 @@ class AppRoutes {
   static const String signUpScreen = 'signup_screen';
   static const String signUpSuccessScreen = 'signup_success_screen';
   static const String intropage = 'intro_page';
-  static const String forgetPage = 'intro_page';
+  static const String forgetPage = 'forgot_password_screen';
 }
 
 Route<dynamic> getRoute(RouteSettings settings) {
@@ -83,7 +84,7 @@ Route<dynamic> _buildIntroPage() {
 
 Route<dynamic> _buildForgetPage() {
   return MaterialPageRoute(
-    builder: (BuildContext context) => PageBuilder.buildForgetPage(),
+    builder: (BuildContext context) => PageBuilder.buildForgetPasswordScreen(),
   );
 }
 
@@ -136,10 +137,10 @@ class PageBuilder {
     );
   }
 
-  static Widget buildForgetPage() {
+  static Widget buildForgetPasswordScreen() {
     return BlocProvider(
       create: (BuildContext context) =>
-          IntroPageBloc()..add(IntroInitialEvent(context: context)),
+          ForgotPasswordBloc()..add(ForgetInitialEvent(context: context)),
       child: const ForgotPasswordScreen(),
     );
   }
