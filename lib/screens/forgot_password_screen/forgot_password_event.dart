@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'package:mg/utils/base_equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +10,3 @@ class ForgetInitialEvent extends ForgotPasswordEvent {
 
   ForgetInitialEvent({this.context});
 }
-=======
-part of 'forgot_password_bloc.dart';
-
-@immutable
-abstract class ForgotPasswordEvent {}
->>>>>>> origin/main
