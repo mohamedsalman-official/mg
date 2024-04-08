@@ -8,20 +8,23 @@ import 'package:mg/screens/page_inprogress.dart';
 import 'package:mg/screens/profile_settings/profile_bloc.dart';
 import 'package:mg/screens/profile_settings/profile_event.dart';
 import 'package:mg/screens/profile_settings/profile_screen.dart';
+import 'package:mg/screens/signup_screen/signup_bloc.dart';
+import 'package:mg/screens/signup_screen/signup_event.dart';
 import 'package:mg/screens/signup_screen/signup_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = 'splash_screen';
   static const String loginScreen = 'login_screen';
-  static const String profilepage = 'profile_page';
+  static const String profilePage = 'profile_page';
   static const String signUpScreen = 'signup_screen';
+  static const String signUpSuccessScreen = 'signup_success_screen';
 }
 
 Route<dynamic> getRoute(RouteSettings settings) {
   switch (settings.name) {
     case AppRoutes.loginScreen:
       return _buildSignUpScreen();
-    case AppRoutes.profilepage:
+    case AppRoutes.profilePage:
       return _buildProfilePage();
   }
   return _buildInProgressScreen();
@@ -53,6 +56,12 @@ Route<dynamic> _buildSignUpScreen() {
   );
 }
 
+Route<dynamic> _buildSignUpSuccessScreen() {
+  return MaterialPageRoute(
+    builder: (BuildContext context) => PageBuilder.buildSignUpSuccessScreen(),
+  );
+}
+
 class PageBuilder {
   static Widget buildInProgressScreen() {
     return BlocProvider(
@@ -81,7 +90,15 @@ class PageBuilder {
   static Widget buildSignUpScreen() {
     return BlocProvider(
       create: (BuildContext context) =>
-          ProfileBloc()..add(ProfileInitialEvent(context: context)),
+          SignUpBloc()..add(SignUpInitialEvent(context: context)),
+      child: const SignUpScreen(),
+    );
+  }
+
+  static Widget buildSignUpSuccessScreen() {
+    return BlocProvider(
+      create: (BuildContext context) =>
+          SignUpBloc()..add(SignUpInitialEvent(context: context)),
       child: const SignUpScreen(),
     );
   }
@@ -103,7 +120,7 @@ Widget addAuthBloc(BuildContext context, Widget widget) {
         while (Navigator.canPop(context)) {
           Navigator.pop(context);
         }
-        await Navigator.pushReplacementNamed(context, AppRoutes.profilepage);
+        await Navigator.pushReplacementNamed(context, AppRoutes.profilePage);
       }
 
       // if (state is AuthenticationAuthenticated) {

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dynamic_themes/dynamic_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,7 +32,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   AuthenticationBloc? bloc;
-  Timer? _timer;
 
   @override
   void initState() {
@@ -57,7 +54,7 @@ class _MyAppState extends State<MyApp> {
       themeCollection: AppThemes().getThemeCollections(),
       builder: (BuildContext context, ThemeData theme) {
         return MaterialApp(
-          title: 'Inovate',
+          title: 'Innovate',
           theme: theme,
           onGenerateRoute: getRoute,
           debugShowCheckedModeBanner: false,

@@ -13,4 +13,5 @@ class ColorResource {
   static const Color colorF5F5FC = Color(0xffF5F5FC);
 
   static const Color primaryColor = Color(0xffFFA53C);
+  static const Color textGreyColor = Color(0xff939598);
 }

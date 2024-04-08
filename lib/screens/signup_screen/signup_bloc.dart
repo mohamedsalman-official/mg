@@ -10,8 +10,8 @@ import '../../http/api_repository.dart';
 import '../../http/httpurls.dart';
 import '../../utils/contants.dart';
 
-class SignupBloc extends Bloc<SignupEvent, BaseState> {
-  SignupBloc() : super(InitialState());
+class SignUpBloc extends Bloc<SignupEvent, BaseState> {
+  SignUpBloc() : super(InitialState());
 
   @override
   Stream<BaseState> mapEventToState(

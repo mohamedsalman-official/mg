@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mg/screens/login_page/model/LoginResponseModel.dart';
-import 'package:mg/utils/singleton.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mg/base/base_state.dart';
 import 'package:mg/screens/login_page/login_bloc.dart';
+import 'package:mg/screens/login_page/model/LoginResponseModel.dart';
+import 'package:mg/utils/singleton.dart';
+
 import '../../router.dart';
 import '../../utils/base_equatable.dart';
 import '../../utils/contants.dart';
@@ -23,11 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool _isLoggedIn = false;
-
-  GoogleSignInAccount? _userObj;
-  GoogleSignIn _googleSignIn = GoogleSignIn();
-  GoogleSignInAccount? _currentUser;
 
   @override
   void initState() {
@@ -71,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "ressssssss-----------------${PreferenceHelper.getId()}");
 
                   Navigator.pushReplacementNamed(
-                      context, AppRoutes.profilepage);
+                      context, AppRoutes.profilePage);
                 }
               }
             }
