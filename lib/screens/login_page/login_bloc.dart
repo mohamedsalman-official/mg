@@ -7,6 +7,7 @@ import 'package:mg/screens/login_page/login_event.dart';
 import '../../http/api_repository.dart';
 import '../../http/httpurls.dart';
 import '../../utils/contants.dart';
+import '../../utils/singleton.dart';
 import 'model/LoginResponseModel.dart';
 
 class LoginBloc extends Bloc<LoginEvent, BaseState> {
@@ -30,6 +31,7 @@ class LoginBloc extends Bloc<LoginEvent, BaseState> {
           method: ApiRequestMethod.post,
           isBearerTokenNeed: false,
           context: event.context);
+
       response = LoginResponse.fromJson(returnableValues);
 
       yield SuccessState(successResponse: response);

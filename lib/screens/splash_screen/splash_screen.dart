@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:mg/utils/color_resources.dart';
 import 'package:mg/utils/image_resource.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,49 +19,33 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    _timer = Timer(Duration(milliseconds: 500), () {
-      // SOMETHING
-    });
-    print('-=-=-=-=-= SPLADHS SCREEN');
+    _timer = Timer(Duration(milliseconds: 1000), () {});
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Center(
-              child: SizedBox(
-                width: 260,
-                height: 113,
-                child: Image.asset(
-                  ImageResource.splashlogo,
-                ),
+    return ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (_, child) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  Center(
+                    child: SizedBox(
+                      width: 291.w,
+                      height: 51.h,
+                      child: null,
+                    ),
+                  )
+                ],
               ),
             ),
-            Column(
-              children: [
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 17.0),
-                  child: Center(
-                    child: Text(
-                      '@copyright 2023',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(color: ColorResource.color333333),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
 }

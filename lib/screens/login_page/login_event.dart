@@ -6,6 +6,7 @@ abstract class LoginEvent extends BaseEquatable {}
 class LoginInitialEvent extends LoginEvent {
   BuildContext? context;
   dynamic arguments;
+
   LoginInitialEvent({this.context});
 }
 

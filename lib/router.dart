@@ -11,6 +11,11 @@ import 'package:mg/screens/profile_settings/profile_screen.dart';
 import 'package:mg/screens/signup_screen/signup_bloc.dart';
 import 'package:mg/screens/signup_screen/signup_event.dart';
 import 'package:mg/screens/signup_screen/signup_screen.dart';
+import 'package:mg/utils/preference_helpher.dart';
+import 'package:mg/screens/intro_page/intro_page_bloc.dart';
+import 'package:mg/screens/intro_page/intro_page_event.dart';
+import 'package:mg/screens/intro_page/intro_page_screen.dart';
+import 'package:mg/screens/forgot_password_screen/forgot_password_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = 'splash_screen';
@@ -18,14 +23,22 @@ class AppRoutes {
   static const String profilePage = 'profile_page';
   static const String signUpScreen = 'signup_screen';
   static const String signUpSuccessScreen = 'signup_success_screen';
+  static const String intropage = 'intro_page';
+  static const String forgetPage = 'intro_page';
 }
 
 Route<dynamic> getRoute(RouteSettings settings) {
   switch (settings.name) {
     case AppRoutes.loginScreen:
-      return _buildSignUpScreen();
+      return _buildLoginScreen();
     case AppRoutes.profilePage:
       return _buildProfilePage();
+    case AppRoutes.intropage:
+      return _buildIntroPage();
+    case AppRoutes.forgetPage:
+      return _buildForgetPage();
+    case AppRoutes.signUpScreen:
+      return _buildSignUpScreen();
   }
   return _buildInProgressScreen();
 }
@@ -59,6 +72,18 @@ Route<dynamic> _buildSignUpScreen() {
 Route<dynamic> _buildSignUpSuccessScreen() {
   return MaterialPageRoute(
     builder: (BuildContext context) => PageBuilder.buildSignUpSuccessScreen(),
+  );
+}
+
+Route<dynamic> _buildIntroPage() {
+  return MaterialPageRoute(
+    builder: (BuildContext context) => PageBuilder.buildIntroPage(),
+  );
+}
+
+Route<dynamic> _buildForgetPage() {
+  return MaterialPageRoute(
+    builder: (BuildContext context) => PageBuilder.buildForgetPage(),
   );
 }
 
@@ -102,6 +127,22 @@ class PageBuilder {
       child: const SignUpScreen(),
     );
   }
+
+  static Widget buildIntroPage() {
+    return BlocProvider(
+      create: (BuildContext context) =>
+          IntroPageBloc()..add(IntroInitialEvent(context: context)),
+      child: const IntroScreen(),
+    );
+  }
+
+  static Widget buildForgetPage() {
+    return BlocProvider(
+      create: (BuildContext context) =>
+          IntroPageBloc()..add(IntroInitialEvent(context: context)),
+      child: const ForgotPasswordScreen(),
+    );
+  }
 }
 
 Widget addAuthBloc(BuildContext context, Widget widget) {
@@ -113,7 +154,7 @@ Widget addAuthBloc(BuildContext context, Widget widget) {
         while (Navigator.canPop(context)) {
           Navigator.pop(context);
         }
-        await Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
+        await Navigator.pushReplacementNamed(context, AppRoutes.intropage);
       }
 
       if (state is AuthenticationAuthenticated) {
@@ -122,12 +163,6 @@ Widget addAuthBloc(BuildContext context, Widget widget) {
         }
         await Navigator.pushReplacementNamed(context, AppRoutes.profilePage);
       }
-
-      // if (state is AuthenticationAuthenticated) {
-      //   while (Navigator.canPop(context)) {
-      //     Navigator.pop(context);
-      //   }
-      // }
     },
     child: BlocBuilder(
       bloc: BlocProvider.of<AuthenticationBloc>(context),
