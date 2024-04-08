@@ -1,25 +1,26 @@
+import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
 import 'package:mg/base/base_state.dart';
-import 'package:mg/screens/login_page/login_event.dart';
+import 'package:mg/screens/signup_screen/model/SignUpModel.dart';
+import 'package:mg/screens/signup_screen/signup_event.dart';
 
 import '../../http/api_repository.dart';
 import '../../http/httpurls.dart';
 import '../../utils/contants.dart';
-import 'model/LoginResponseModel.dart';
 
-class LoginBloc extends Bloc<LoginEvent, BaseState> {
-  LoginBloc() : super(InitialState());
+class SignupBloc extends Bloc<SignupEvent, BaseState> {
+  SignupBloc() : super(InitialState());
 
   @override
   Stream<BaseState> mapEventToState(
-    LoginEvent event,
+    SignupEvent event,
   ) async* {
-    if (event is LoginInitialEvent) {
+    if (event is SignUpInitialEvent) {
       yield LoadingState();
       yield SuccessState(successResponse: 'success');
-    } else if (event is LoginUserEvent) {
+    } else if (event is SignUpUserEvent) {
       dynamic response;
       yield LoadingState();
 
@@ -30,7 +31,7 @@ class LoginBloc extends Bloc<LoginEvent, BaseState> {
           method: ApiRequestMethod.post,
           isBearerTokenNeed: false,
           context: event.context);
-      response = LoginResponse.fromJson(returnableValues);
+      response = SignUpResponse.fromJson(returnableValues);
 
       yield SuccessState(successResponse: response);
     }

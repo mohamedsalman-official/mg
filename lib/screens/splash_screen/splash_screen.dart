@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:mg/router.dart';
 import 'package:mg/utils/color_resources.dart';
 import 'package:mg/utils/image_resource.dart';
 

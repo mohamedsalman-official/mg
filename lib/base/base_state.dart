@@ -25,10 +25,6 @@ class SuccessState extends BaseState {
   List<Object> get props => [successResponse];
 }
 
-/**
- *
- *
- * */
 class FailureState extends BaseState {
   final dynamic errorMessage;
 

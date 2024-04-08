@@ -8,17 +8,19 @@ import 'package:mg/screens/page_inprogress.dart';
 import 'package:mg/screens/profile_settings/profile_bloc.dart';
 import 'package:mg/screens/profile_settings/profile_event.dart';
 import 'package:mg/screens/profile_settings/profile_screen.dart';
+import 'package:mg/screens/signup_screen/signup_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = 'splash_screen';
   static const String loginScreen = 'login_screen';
   static const String profilepage = 'profile_page';
+  static const String signUpScreen = 'signup_screen';
 }
 
 Route<dynamic> getRoute(RouteSettings settings) {
   switch (settings.name) {
     case AppRoutes.loginScreen:
-      return _buildLoginScreen();
+      return _buildSignUpScreen();
     case AppRoutes.profilepage:
       return _buildProfilePage();
   }
@@ -45,6 +47,12 @@ Route<dynamic> _buildProfilePage() {
   );
 }
 
+Route<dynamic> _buildSignUpScreen() {
+  return MaterialPageRoute(
+    builder: (BuildContext context) => PageBuilder.buildSignUpScreen(),
+  );
+}
+
 class PageBuilder {
   static Widget buildInProgressScreen() {
     return BlocProvider(
@@ -67,6 +75,14 @@ class PageBuilder {
       create: (BuildContext context) =>
           ProfileBloc()..add(ProfileInitialEvent(context: context)),
       child: const ProfileScreen(),
+    );
+  }
+
+  static Widget buildSignUpScreen() {
+    return BlocProvider(
+      create: (BuildContext context) =>
+          ProfileBloc()..add(ProfileInitialEvent(context: context)),
+      child: const SignUpScreen(),
     );
   }
 }
