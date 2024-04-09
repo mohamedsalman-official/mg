@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
               }
             }
             return ScreenUtilInit(
-                designSize: const Size(360, 690),
+                designSize: const Size(393, 852),
                 minTextAdapt: true,
                 splitScreenMode: true,
                 builder: (_, child) {
@@ -77,12 +77,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       body: Stack(
                         children: [
                           Container(
+                            alignment: Alignment.topCenter,
                             child: Image.asset(
+                              height: 416.h,
                               ImageResource.banner,
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(top: 250.h),
+                            alignment: Alignment.bottomCenter,
+                            margin: EdgeInsets.only(top: 290.h),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
@@ -96,7 +99,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 children: [
                                   Container(
                                     alignment: Alignment.center,
-                                    margin: EdgeInsets.only(top: 20),
                                     child: Text(
                                       "Login",
                                       style: TextStyle(
@@ -199,6 +201,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                   ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -245,7 +250,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 20.h,
                                   ),
                                   Center(
                                       child: ElevatedButton(
@@ -263,7 +268,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   )),
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 20.h,
                                   ),
                                   Center(
                                     child: RichText(
@@ -271,7 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       text: TextSpan(
                                         text: 'Dont have an account?',
                                         style: TextStyle(
-                                          height: 2,
+                                          height: 3,
                                           fontSize: 13.sp,
                                           fontFamily:
                                               FontResousrce.DMSans_REGULAR,
@@ -281,7 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           TextSpan(
                                             text: '  SignUp ',
                                             style: TextStyle(
-                                                height: 1.2,
+                                                height: 3,
                                                 fontSize: 13.sp,
                                                 fontFamily: FontResousrce
                                                     .DMSans_REGULAR,
@@ -309,7 +314,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 20.h,
+                                    height: 10.h,
                                   )
                                 ],
                               ),

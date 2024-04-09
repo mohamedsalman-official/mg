@@ -44,7 +44,7 @@ class _IntroScreenState extends State<IntroScreen> {
               );
             } else if (state is SuccessState) {}
             return ScreenUtilInit(
-                designSize: const Size(360, 690),
+                designSize: const Size(393, 852),
                 minTextAdapt: true,
                 splitScreenMode: true,
                 builder: (_, child) {
@@ -55,12 +55,14 @@ class _IntroScreenState extends State<IntroScreen> {
                         alignment: Alignment.topCenter,
                         children: [
                           Container(
+                            height: 416.h,
                             child: Image.asset(
                               ImageResource.banner,
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(top: 280.h),
+                            alignment: Alignment.bottomCenter,
+                            margin: EdgeInsets.only(top: 330.h),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
@@ -74,7 +76,6 @@ class _IntroScreenState extends State<IntroScreen> {
                                 children: [
                                   Container(
                                     alignment: Alignment.center,
-                                    margin: EdgeInsets.only(top: 50.h),
                                     child: SizedBox(
                                       width: 260.w,
                                       height: 44.h,
@@ -84,7 +85,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 20.h,
+                                    height: 30.h,
                                   ),
                                   Center(
                                       child: ElevatedButton(
@@ -102,7 +103,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                     ),
                                   )),
                                   SizedBox(
-                                    height: 20.h,
+                                    height: 30.h,
                                   ),
                                   Center(
                                     child: RichText(
@@ -137,7 +138,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 20.h,
                                   ),
                                   Row(children: <Widget>[
                                     Expanded(
@@ -161,7 +162,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                     ),
                                   ]),
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 20.h,
                                   ),
                                   Center(
                                     child: OutlinedButton(
@@ -189,7 +190,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 20.h,
+                                    height: 30.h,
                                   ),
                                   Center(
                                     child: RichText(
@@ -243,7 +244,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 20.h,
+                                    height: 30.h,
                                   ),
                                 ],
                               ),

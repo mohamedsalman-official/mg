@@ -7,6 +7,7 @@ import 'package:mg/screens/forgot_password_screen/forgot_password_event.dart';
 import '../../base/base_state.dart';
 import '../../utils/color_resources.dart';
 import '../../utils/image_resource.dart';
+import '../../router.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -60,7 +61,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 200.h),
+                          margin: EdgeInsets.only(top: 240.h),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
@@ -150,16 +151,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 170.h),
+                                SizedBox(height: 130.h),
                                 Padding(
                                   padding: EdgeInsets.only(
                                       left: 15.w,
-                                      top: 10.h,
+                                      top: 20.h,
                                       right: 15.w,
                                       bottom: 10.h),
                                   child: Center(
                                     child: TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pushReplacementNamed(
+                                            context, AppRoutes.loginScreen);
+                                      },
                                       child: Text(
                                         "Back to Login",
                                         style: TextStyle(
@@ -171,6 +175,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                     ),
                                   ),
                                 ),
+                                SizedBox(height: 10.h),
                               ],
                             ),
                           ),

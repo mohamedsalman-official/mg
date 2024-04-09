@@ -8,6 +8,7 @@ import 'package:mg/utils/color_resources.dart';
 
 import '../../base/base_state.dart';
 import '../../utils/image_resource.dart';
+import '../../router.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -433,7 +434,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                           .DMSans_REGULAR,
                                                       fontSize: 14.sp)),
                                               TextButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator
+                                                      .pushReplacementNamed(
+                                                          context,
+                                                          AppRoutes
+                                                              .loginScreen);
+                                                },
                                                 child: Text(
                                                   "Sign In",
                                                   style: TextStyle(
