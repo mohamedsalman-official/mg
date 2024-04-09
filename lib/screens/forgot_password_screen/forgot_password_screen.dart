@@ -74,7 +74,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 25.h),
                                 Container(
                                   padding: EdgeInsets.only(
                                       left: 15.w,
