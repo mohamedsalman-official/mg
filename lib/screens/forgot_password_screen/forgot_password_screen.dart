@@ -5,9 +5,9 @@ import 'package:mg/screens/forgot_password_screen/forgot_password_bloc.dart';
 import 'package:mg/screens/forgot_password_screen/forgot_password_event.dart';
 
 import '../../base/base_state.dart';
+import '../../router.dart';
 import '../../utils/color_resources.dart';
 import '../../utils/image_resource.dart';
-import '../../router.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -52,16 +52,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   child: Scaffold(
                     backgroundColor: ColorResource.primaryColor,
                     body: Stack(
-                      alignment: Alignment.topCenter,
                       children: [
                         Container(
+                          alignment: Alignment.topCenter,
                           margin: EdgeInsets.only(top: 20.h),
                           child: Image.asset(
                             ImageResource.banner,
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 240.h),
+                          alignment: Alignment.bottomCenter,
+                          margin: EdgeInsets.only(top: 340.h),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
@@ -137,7 +138,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                       onPressed: () {},
                                       child: Center(
                                         child: Text(
-                                          "Send Reset  Link",
+                                          "Send Reset Link",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 14.sp,
@@ -151,7 +152,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 130.h),
                                 Padding(
                                   padding: EdgeInsets.only(
                                       left: 15.w,
