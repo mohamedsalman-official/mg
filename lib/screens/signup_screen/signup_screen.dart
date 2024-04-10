@@ -29,7 +29,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController confirmPasswordController = TextEditingController();
 
   bool passwordVisible = false;
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  AutovalidateMode _autoValidate = AutovalidateMode.disabled;
+
   String _password = "";
+  String _confirmpassword = "";
 
   @override
   void initState() {
@@ -82,389 +86,501 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 topRight: Radius.circular(15.r)),
                           ),
                           child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.only(top: 10.h),
-                                  child: const Text(
-                                    "Sign Up",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 24,
-                                        fontFamily:
-                                            FontResousrce.DMSans_SEMIBOLD),
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      left: 15.w,
-                                      top: 15.h,
-                                      right: 15.w,
-                                      bottom: 10.h),
-                                  child: Text(
-                                    "Hello!👋",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16.sp,
-                                        fontFamily:
-                                            FontResousrce.DMSans_SEMIBOLD),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      floatingLabelStyle: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                      label: Text(
-                                        'First Name *',
-                                        style: TextStyle(
-                                            fontFamily:
-                                                FontResousrce.DMSans_REGULAR,
-                                            fontSize: 14.sp),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                          color: ColorResource.primaryColor,
-                                          width: 2,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Colors.red,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
+                            child: Form(
+                              key: _formkey,
+                              autovalidateMode: _autoValidate,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    margin: EdgeInsets.only(top: 10.h),
+                                    child: const Text(
+                                      "Sign Up",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 24,
+                                          fontFamily:
+                                              FontResousrce.DMSans_SEMIBOLD),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      floatingLabelStyle: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                      label: Text(
-                                        'Last Name *',
-                                        style: TextStyle(
-                                            fontFamily:
-                                                FontResousrce.DMSans_REGULAR,
-                                            fontSize: 14.sp),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: ColorResource.primaryColor,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Colors.red,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        left: 15.w,
+                                        top: 15.h,
+                                        right: 15.w,
+                                        bottom: 10.h),
+                                    child: Text(
+                                      "Hello!👋",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16.sp,
+                                          fontFamily:
+                                              FontResousrce.DMSans_SEMIBOLD),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      floatingLabelStyle: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                      label: Text(
-                                        'Company Name (Optional)',
-                                        style: TextStyle(
-                                            fontFamily:
-                                                FontResousrce.DMSans_REGULAR,
-                                            fontSize: 14.sp),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: ColorResource.primaryColor,
-                                          width: 2.w,
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: TextFormField(
+                                      controller: firstNameController,
+                                      decoration: InputDecoration(
+                                        floatingLabelStyle: const TextStyle(
+                                          color: Colors.black,
                                         ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Colors.red,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    keyboardType: TextInputType.emailAddress,
-                                    decoration: InputDecoration(
-                                      floatingLabelStyle: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                      label: Text(
-                                        'Email ID *',
-                                        style: TextStyle(
-                                            fontFamily:
-                                                FontResousrce.DMSans_REGULAR,
-                                            fontSize: 14.sp),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: ColorResource.primaryColor,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Colors.red,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    keyboardType: TextInputType.phone,
-                                    decoration: InputDecoration(
-                                      floatingLabelStyle: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                      label: Text(
-                                        'Mobile Number *',
-                                        style: TextStyle(
-                                            fontFamily:
-                                                FontResousrce.DMSans_REGULAR,
-                                            fontSize: 14.sp),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: ColorResource.primaryColor,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Colors.red,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    onSaved: (val) => _password = val!,
-                                    enableSuggestions: false,
-                                    autocorrect: false,
-                                    obscureText: !passwordVisible,
-                                    decoration: InputDecoration(
-                                      suffixIcon: IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            passwordVisible = !passwordVisible;
-                                          });
-                                        },
-                                        icon: Image.asset(
-                                          passwordVisible == true
-                                              ? ImageResource.eye_open
-                                              : ImageResource.eye_slashed,
-                                        ),
-                                      ),
-                                      floatingLabelStyle: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                      label: Text(
-                                        'Password',
-                                        style: TextStyle(
-                                            fontFamily:
-                                                FontResousrce.DMSans_REGULAR,
-                                            fontSize: 14.sp),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: ColorResource.primaryColor,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      suffixIcon: IconButton(
-                                        onPressed: () {},
-                                        icon: Image.asset(
-                                            ImageResource.tick_green),
-                                      ),
-                                      floatingLabelStyle: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                      label: Text(
-                                        'Confirm Password',
-                                        style: TextStyle(
-                                            fontFamily:
-                                                FontResousrce.DMSans_REGULAR,
-                                            fontSize: 14.sp),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: ColorResource.primaryColor,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Colors.red,
-                                          width: 2.w,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 15.w,
-                                      top: 10.h,
-                                      right: 15.w,
-                                      bottom: 10.h),
-                                  child: Container(
-                                    height: 50.h,
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor:
-                                              ColorResource.primaryColor),
-                                      child: Center(
-                                        child: Text(
-                                          "Continue",
+                                        label: Text(
+                                          'First Name *',
                                           style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14.sp,
                                               fontFamily:
-                                                  FontResousrce.DMSans_MEDIUM),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 15.w,
-                                      top: 10.h,
-                                      right: 15.w,
-                                      bottom: 10.h),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text("Already have an account?",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: FontResousrce
-                                                      .DMSans_REGULAR,
-                                                  fontSize: 14.sp)),
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.pushReplacementNamed(
-                                                  context,
-                                                  AppRoutes.loginScreen);
-                                            },
-                                            child: Text(
-                                              "Sign In",
-                                              style: TextStyle(
-                                                  color: ColorResource
-                                                      .primaryColor,
-                                                  fontFamily: FontResousrce
-                                                      .DMSans_MEDIUM,
-                                                  fontSize: 14.sp),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const SignUpSuccessScreen()),
-                                          );
-                                        },
-                                        child: Text(
-                                          "Continue as Guest?",
-                                          style: TextStyle(
-                                              color: ColorResource.primaryColor,
-                                              fontFamily:
-                                                  FontResousrce.DMSans_MEDIUM,
+                                                  FontResousrce.DMSans_REGULAR,
                                               fontSize: 14.sp),
                                         ),
-                                      )
-                                    ],
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                            color: ColorResource.primaryColor,
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: TextFormField(
+                                      controller: lastNameController,
+                                      decoration: InputDecoration(
+                                        floatingLabelStyle: const TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                        label: Text(
+                                          'Last Name *',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  FontResousrce.DMSans_REGULAR,
+                                              fontSize: 14.sp),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: ColorResource.primaryColor,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: TextFormField(
+                                      controller: companyNameController,
+                                      decoration: InputDecoration(
+                                        floatingLabelStyle: const TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                        label: Text(
+                                          'Company Name (Optional)',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  FontResousrce.DMSans_REGULAR,
+                                              fontSize: 14.sp),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: ColorResource.primaryColor,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: TextFormField(
+                                      controller: emailController,
+                                      keyboardType: TextInputType.emailAddress,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Enter email ID";
+                                        } else if (RegExp(
+                                                r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                            .hasMatch(value)) {
+                                          return "Enter valid email ID";
+                                        }
+                                        return null;
+                                      },
+                                      decoration: InputDecoration(
+                                        errorStyle: TextStyle(fontSize: 10.sp),
+                                        floatingLabelStyle: const TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                        label: Text(
+                                          'Email ID *',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  FontResousrce.DMSans_REGULAR,
+                                              fontSize: 14.sp),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: ColorResource.primaryColor,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: TextFormField(
+                                      controller: mobileController,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Enter mobile number";
+                                        } else if (value.length < 10) {
+                                          return "Enter 10-digit mobile number";
+                                        }
+                                        return null;
+                                      },
+                                      keyboardType: TextInputType.phone,
+                                      decoration: InputDecoration(
+                                        errorStyle: TextStyle(fontSize: 10.sp),
+                                        floatingLabelStyle: const TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                        label: Text(
+                                          'Mobile Number *',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  FontResousrce.DMSans_REGULAR,
+                                              fontSize: 14.sp),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: ColorResource.primaryColor,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: TextFormField(
+                                      controller: passwordController,
+                                      enableSuggestions: false,
+                                      autocorrect: false,
+                                      obscureText: !passwordVisible,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Enter Password";
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _password = value;
+                                        });
+                                      },
+                                      decoration: InputDecoration(
+                                        errorStyle: TextStyle(fontSize: 10.sp),
+                                        suffixIcon: IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              passwordVisible =
+                                                  !passwordVisible;
+                                            });
+                                          },
+                                          icon: Image.asset(
+                                            passwordVisible == true
+                                                ? ImageResource.eye_open
+                                                : ImageResource.eye_slashed,
+                                          ),
+                                        ),
+                                        floatingLabelStyle: const TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                        label: Text(
+                                          'Password',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  FontResousrce.DMSans_REGULAR,
+                                              fontSize: 14.sp),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: ColorResource.primaryColor,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: TextFormField(
+                                      controller: confirmPasswordController,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Enter confirm password";
+                                        }
+                                        return null;
+                                      },
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _confirmpassword = value;
+                                        });
+                                      },
+                                      decoration: InputDecoration(
+                                        errorStyle: TextStyle(fontSize: 10.sp),
+                                        suffixIcon: (_password ==
+                                                    _confirmpassword &&
+                                                _confirmpassword.isNotEmpty)
+                                            ? IconButton(
+                                                onPressed: () {},
+                                                icon: Image.asset(
+                                                    ImageResource.tick_green),
+                                              )
+                                            : null,
+                                        floatingLabelStyle: const TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                        label: Text(
+                                          'Confirm Password',
+                                          style: TextStyle(
+                                              fontFamily:
+                                                  FontResousrce.DMSans_REGULAR,
+                                              fontSize: 14.sp),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: ColorResource.primaryColor,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.red,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 15.w,
+                                        top: 10.h,
+                                        right: 15.w,
+                                        bottom: 10.h),
+                                    child: Container(
+                                      height: 50.h,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          if (_formkey.currentState!
+                                              .validate()) {
+                                            return;
+                                          } else {
+                                            setState(() => _autoValidate =
+                                                AutovalidateMode.always);
+                                          }
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                ColorResource.primaryColor),
+                                        child: Center(
+                                          child: Text(
+                                            "Continue",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14.sp,
+                                                fontFamily: FontResousrce
+                                                    .DMSans_MEDIUM),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 15.w,
+                                        top: 10.h,
+                                        right: 15.w,
+                                        bottom: 10.h),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text("Already have an account?",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontFamily: FontResousrce
+                                                        .DMSans_REGULAR,
+                                                    fontSize: 14.sp)),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pushReplacementNamed(
+                                                    context,
+                                                    AppRoutes.loginScreen);
+                                              },
+                                              child: Text(
+                                                "Sign In",
+                                                style: TextStyle(
+                                                    color: ColorResource
+                                                        .primaryColor,
+                                                    fontFamily: FontResousrce
+                                                        .DMSans_MEDIUM,
+                                                    fontSize: 14.sp),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const SignUpSuccessScreen()),
+                                            );
+                                          },
+                                          child: Text(
+                                            "Continue as Guest?",
+                                            style: TextStyle(
+                                                color:
+                                                    ColorResource.primaryColor,
+                                                fontFamily:
+                                                    FontResousrce.DMSans_MEDIUM,
+                                                fontSize: 14.sp),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

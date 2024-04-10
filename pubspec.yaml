@@ -44,7 +44,6 @@ dependencies:
   equatable: ^2.0.5
   flutter_screenutil: ^5.9.0
   flutter_native_splash: ^2.4.0
-  back_pressed: ^0.0.2
 
 dev_dependencies:
   flutter_test:
