@@ -25,7 +25,7 @@ class APIRepository {
     await PreferenceHelper.getBearer().then((value) {
       if (value != null && isBearerTokenNeed) {
         bearertoken = value;
-        FlashSingleton.instance.id = value;
+        // FlashSingleton.instance.id =  PreferenceHelper.getId();
       }
     });
 

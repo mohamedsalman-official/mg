@@ -26,7 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     bloc = BlocProvider.of<ProfileBloc>(context);
 
     await PreferenceHelper.getId().then((value) {
-      if (PreferenceHelper.getId() != null) {
+      if (PreferenceHelper.getId() != 0) {
         FlashSingleton.instance.id = value;
       }
     });

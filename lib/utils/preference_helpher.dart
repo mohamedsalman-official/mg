@@ -41,16 +41,16 @@ class PreferenceHelper {
     return prefs.getString(SharedPrefKeys.userName) ?? '';
   }
 
-  static setId(String? value) async {
+  static setId(int? value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (value is String) {
-      await prefs.setString(SharedPrefKeys.Id, value);
+    if (value is int) {
+      await prefs.setInt(SharedPrefKeys.Id, value);
     }
   }
 
-  static Future<String> getId() async {
+  static Future<int> getId() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString(SharedPrefKeys.Id) ?? '';
+    return prefs.getInt(SharedPrefKeys.Id) ?? 0;
   }
 
   static Future<bool> getLoginStatus() async {

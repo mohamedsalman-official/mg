@@ -2,12 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mg/base/base_state.dart';
-import 'package:mg/screens/login_page/login_event.dart';
-
 import '../../http/api_repository.dart';
 import '../../http/httpurls.dart';
 import '../../utils/contants.dart';
 import 'model/LoginResponseModel.dart';
+import 'login_event.dart';
 
 class LoginBloc extends Bloc<LoginEvent, BaseState> {
   LoginBloc() : super(InitialState());
@@ -22,7 +21,6 @@ class LoginBloc extends Bloc<LoginEvent, BaseState> {
     } else if (event is LoginUserEvent) {
       dynamic response;
       yield LoadingState();
-
       print(event.arguments);
       final dynamic returnableValues = await APIRepository().dynamicRequest(
           HttpUrl.login,

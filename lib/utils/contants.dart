@@ -2,7 +2,7 @@ enum ApiRequestMethod { get, put, delete, post, patch }
 
 class Constants {
   static const String getTrack = 'getTrack';
-  static const String success = '1';
+  static const bool success = true;
 }
 
 class SharedPrefKeys {

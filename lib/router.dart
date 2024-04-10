@@ -17,6 +17,9 @@ import 'package:mg/screens/profile_settings/profile_screen.dart';
 import 'package:mg/screens/signup_screen/signup_bloc.dart';
 import 'package:mg/screens/signup_screen/signup_event.dart';
 import 'package:mg/screens/signup_screen/signup_screen.dart';
+import 'package:mg/screens/dashboard/dashboard_screen.dart';
+import 'package:mg/screens/dashboard/dashboard_bloc.dart';
+import 'package:mg/screens/dashboard/dashboard_event.dart';
 
 class AppRoutes {
   static const String splashScreen = 'splash_screen';
@@ -26,6 +29,7 @@ class AppRoutes {
   static const String signUpSuccessScreen = 'signup_success_screen';
   static const String intropage = 'intro_page';
   static const String forgetPage = 'forgot_password_screen';
+  static const String dashboardPage = 'dahboard_screen';
 }
 
 Route<dynamic> getRoute(RouteSettings settings) {
@@ -40,6 +44,8 @@ Route<dynamic> getRoute(RouteSettings settings) {
       return _buildForgetPage();
     case AppRoutes.signUpScreen:
       return _buildSignUpScreen();
+    case AppRoutes.dashboardPage:
+      return _buildDashboardPage();
   }
   return _buildInProgressScreen();
 }
@@ -85,6 +91,12 @@ Route<dynamic> _buildIntroPage() {
 Route<dynamic> _buildForgetPage() {
   return MaterialPageRoute(
     builder: (BuildContext context) => PageBuilder.buildForgetPasswordScreen(),
+  );
+}
+
+Route<dynamic> _buildDashboardPage() {
+  return MaterialPageRoute(
+    builder: (BuildContext context) => PageBuilder.buildDashboardScreen(),
   );
 }
 
@@ -144,6 +156,14 @@ class PageBuilder {
       child: const ForgotPasswordScreen(),
     );
   }
+
+  static Widget buildDashboardScreen() {
+    return BlocProvider(
+      create: (BuildContext context) =>
+          DashboardBloc()..add(IntroDashboardEvent(context: context)),
+      child: const DashBoardScreen(),
+    );
+  }
 }
 
 Widget addAuthBloc(BuildContext context, Widget widget) {
@@ -162,7 +182,7 @@ Widget addAuthBloc(BuildContext context, Widget widget) {
         while (Navigator.canPop(context)) {
           Navigator.pop(context);
         }
-        await Navigator.pushReplacementNamed(context, AppRoutes.profilePage);
+        await Navigator.pushReplacementNamed(context, AppRoutes.dashboardPage);
       }
     },
     child: BlocBuilder(
