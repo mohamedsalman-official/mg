@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/color_resources.dart';
 import '../../utils/image_resource.dart';
+import 'package:mg/screens/login_page/login_screen.dart';
+import '../../router.dart';
 
 class SignUpSuccessScreen extends StatefulWidget {
   const SignUpSuccessScreen({super.key});
@@ -70,7 +72,13 @@ class _SignUpSuccessScreenState extends State<SignUpSuccessScreen> {
                   child: Container(
                     height: 50.h,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()),
+                        );
+                      },
                       child: Center(
                         child: Text(
                           "Continue to login",

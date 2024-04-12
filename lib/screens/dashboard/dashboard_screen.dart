@@ -54,7 +54,17 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     builder: (_, child) {
                       return SafeArea(
                         child: Scaffold(
-                          body: Stack(),
+                          body: Stack(
+                            alignment: Alignment.topCenter,
+                            children: [
+                              Container(
+                                height: 416.h,
+                                child: Image.asset(
+                                  ImageResource.banner,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       );
                     });

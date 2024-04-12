@@ -26,12 +26,12 @@ class SignUpBloc extends Bloc<SignupEvent, BaseState> {
 
       print(event.arguments);
       final dynamic returnableValues = await APIRepository().dynamicRequest(
-          HttpUrl.login,
+          HttpUrl.signup,
           userArguments: jsonEncode(event.arguments),
           method: ApiRequestMethod.post,
           isBearerTokenNeed: false,
           context: event.context);
-      response = SignUpResponse.fromJson(returnableValues);
+      response = SignUpModel.fromJson(returnableValues);
 
       yield SuccessState(successResponse: response);
     }

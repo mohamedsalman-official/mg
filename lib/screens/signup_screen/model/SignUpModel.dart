@@ -1,27 +1,18 @@
-class SignUpResponse {
-  String? status;
-  String? msg;
-  String? sId;
-  String? email;
-  String? userToken;
+class SignUpModel {
+  bool? status;
+  String? message;
 
-  SignUpResponse({this.status, this.msg, this.sId, this.email, this.userToken});
+  SignUpModel({this.status, this.message});
 
-  SignUpResponse.fromJson(Map<String, dynamic> json) {
+  SignUpModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    msg = json['msg'];
-    sId = json['_id'];
-    email = json['email'];
-    userToken = json['userToken'];
+    message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
-    data['msg'] = this.msg;
-    data['_id'] = this.sId;
-    data['email'] = this.email;
-    data['userToken'] = this.userToken;
+    data['message'] = this.message;
     return data;
   }
 }
