@@ -76,32 +76,29 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocListener(
       bloc: bloc,
-      listener: (BuildContext context, BaseState state) async {},
+      listener: (BuildContext context, BaseState state) async {
+        if (state is SuccessState) {
+          if (state.successResponse is LoginResponse) {
+            final LoginResponse response = state.successResponse;
+            if (response.status == Constants.success) {
+              PreferenceHelper.setBearer(response.data?.token);
+              FlashSingleton.instance.bearerToken = response.data?.token;
+              print('bearr ${FlashSingleton.instance.bearerToken}');
+              showToast('Login Successfully');
+              PreferenceHelper.setUserName(response.data?.email);
+              PreferenceHelper.setId(response.data?.id);
+              PreferenceHelper.setLoginStatus(true);
+              hideLoader();
+              Navigator.pushReplacementNamed(context, AppRoutes.dashboardPage);
+            }
+          }
+        }
+        setState(() {});
+      },
       child: BlocBuilder(
           bloc: bloc,
           builder: (BuildContext context, BaseState state) {
-            if (state is InitialState) {
-              return const Center(
-                child: Text('New DAT888888888888888888888A'),
-              );
-            } else if (state is SuccessState) {
-              if (state.successResponse is LoginResponse) {
-                final LoginResponse response = state.successResponse;
-                if (response.status == Constants.success) {
-                  PreferenceHelper.setBearer(response.data?.token);
-                  FlashSingleton.instance.bearerToken = response.data?.token;
-                  print('bearr ${FlashSingleton.instance.bearerToken}');
-                  showToast('Login Successfully');
-                  print("ressssssss-----------------${LoginResponse}");
-                  PreferenceHelper.setUserName(response.data?.email);
-                  PreferenceHelper.setId(response.data?.id);
-                  PreferenceHelper.setLoginStatus(true);
-                  hideLoader();
-                  Navigator.pushReplacementNamed(
-                      context, AppRoutes.dashboardPage);
-                }
-              }
-            }
+            if (state is SuccessState) {}
             return ScreenUtilInit(
                 designSize: const Size(393, 852),
                 minTextAdapt: true,
@@ -109,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 builder: (_, child) {
                   return SafeArea(
                     child: Scaffold(
-                      backgroundColor: const Color(0xff0FFA53C),
+                      backgroundColor: Color(0xff0FFA53C),
                       resizeToAvoidBottomInset:
                           true, // <-- Set to true to resize when keyboard appears
                       body: Stack(
@@ -187,16 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   bottom: 10.h),
                                               child: TextFormField(
                                                 controller: emailController,
-                                                validator: (value) {
-                                                  if (value!.isEmpty) {
-                                                    return "Enter username";
-                                                  } else {
-                                                    return null;
-                                                  }
-                                                },
                                                 decoration: InputDecoration(
-                                                  errorStyle: TextStyle(
-                                                      fontSize: 10.sp),
                                                   floatingLabelStyle: TextStyle(
                                                     color: Colors.black,
                                                   ),
@@ -227,15 +215,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                                             10.r),
                                                   ),
                                                   errorBorder:
-                                                      OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color: Colors.red,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.r),
-                                                  ),
-                                                  focusedErrorBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                       color: Colors.red,
@@ -302,7 +281,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   ),
                                                   focusedBorder:
                                                       OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                                    borderSide:
+                                                        const BorderSide(
                                                       color: ColorResource
                                                           .primaryColor,
                                                     ),
@@ -312,7 +292,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   ),
                                                   errorBorder:
                                                       OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                                    borderSide:
+                                                        const BorderSide(
                                                       color: Colors.red,
                                                     ),
                                                     borderRadius:
@@ -321,7 +302,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   ),
                                                   focusedErrorBorder:
                                                       OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                                    borderSide:
+                                                        const BorderSide(
                                                       color: Colors.red,
                                                     ),
                                                     borderRadius:
@@ -394,28 +376,51 @@ class _LoginScreenState extends State<LoginScreen> {
                                             Center(
                                                 child: ElevatedButton(
                                               onPressed: () {
-                                                if (_formkey.currentState!
-                                                    .validate()) {
+                                                if (emailController.text
+                                                        .trim()
+                                                        .isNotEmpty &&
+                                                    passwordController.text
+                                                        .trim()
+                                                        .isNotEmpty) {
+                                                  // Scenario: Both username and password are provided (not just whitespace)
                                                   loginUser(bloc);
+                                                } else if (emailController.text
+                                                        .trim()
+                                                        .isEmpty &&
+                                                    passwordController.text
+                                                        .trim()
+                                                        .isNotEmpty) {
+                                                  // Scenario: Username is empty or contains only whitespace
+                                                  showToast(
+                                                      "Please enter a valid Email");
+                                                } else if (emailController.text
+                                                        .trim()
+                                                        .isNotEmpty &&
+                                                    passwordController.text
+                                                        .trim()
+                                                        .isEmpty) {
+                                                  // Scenario: Password is empty or contains only whitespace
+                                                  showToast(
+                                                      "Please enter a valid password");
                                                 } else {
-                                                  setState(() => _autoValidate =
-                                                      AutovalidateMode.always);
+                                                  // Scenario: Both username and password are empty or contain only whitespace
+                                                  showToast(
+                                                      "Please enter a valid Email and Password");
                                                 }
                                               },
+                                              child: Text(
+                                                "Sign In",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
                                               style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    ColorResource.primaryColor,
                                                 fixedSize: Size(310.w, 50.h),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           30.r),
                                                 ),
-                                              ),
-                                              child: const Text(
-                                                "Sign In",
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                backgroundColor: Colors.orange,
                                               ),
                                             )),
                                             SizedBox(
