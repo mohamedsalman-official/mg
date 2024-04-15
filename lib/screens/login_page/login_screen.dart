@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 builder: (_, child) {
                   return SafeArea(
                     child: Scaffold(
-                      backgroundColor: Color(0xff0FFA53C),
+                      backgroundColor: const Color(0xff0FFA53C),
                       resizeToAvoidBottomInset:
                           true, // <-- Set to true to resize when keyboard appears
                       body: Stack(
